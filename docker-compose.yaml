@@ -136,7 +136,7 @@ services:
       - CORE_PEER_LISTENADDRESS=0.0.0.0:8051
       - CORE_PEER_CHAINCODEADDRESS=peer2.developers.workspace:8052
       - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1. .workspace:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.developers.workspace:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.developers.workspace:8051
       - CORE_PEER_LOCALMSPID=Org1MSP
     volumes:
@@ -340,69 +340,69 @@ services:
       - byfn
 
 
-  # ca1:
-  #   extends:
-  #     file: base.yaml
-  #     service: ca-base
-  #   environment:
-  #     - FABRIC_CA_SERVER_CA_NAME=ca-developers
-  #     - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.developers.workspace-cert.pem
-  #     - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/a75d012725ef434f86c9d31f02e748922f9d81f0dfcbb9e4890f1dfbd69a0424_sk
-  #     - FABRIC_CA_SERVER_PORT=7054
-  #   ports:
-  #     - "7054:7054"
-  #   command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.developers.workspace-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/a75d012725ef434f86c9d31f02e748922f9d81f0dfcbb9e4890f1dfbd69a0424_sk -b admin:adminpw -d'
-  #   volumes:
-  #     - ./crypto-config/peerOrganizations/developers.workspace/ca/:/etc/hyperledger/fabric-ca-server-config
-  #   container_name: ca_developers
+  ca1:
+    extends:
+      file: base.yaml
+      service: ca-base
+    environment:
+      - FABRIC_CA_SERVER_CA_NAME=ca-developers
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.developers.workspace-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+      - FABRIC_CA_SERVER_PORT=7054
+    ports:
+      - "7054:7054"
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.developers.workspace-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/priv_sk -b admin:adminpw -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/developers.workspace/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca_developers
     
 
-  # ca2:
-  #   extends:
-  #     file: base.yaml
-  #     service: ca-base
-  #   environment:
-  #     - FABRIC_CA_SERVER_CA_NAME=ca-accounts
-  #     - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.accounts.workspace-cert.pem
-  #     - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/caf48a1b5c6e3d0afa0ef05ff9e42dd890f7a64299d7a7a1cd0da301ffc65263_sk
-  #     - FABRIC_CA_SERVER_PORT=9054
-  #   ports:
-  #     - "9054:9054"
-  #   command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.accounts.workspace-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/caf48a1b5c6e3d0afa0ef05ff9e42dd890f7a64299d7a7a1cd0da301ffc65263_sk -b admin:adminpw -d'
-  #   volumes:
-  #     - ./crypto-config/peerOrganizations/accounts.workspace/ca/:/etc/hyperledger/fabric-ca-server-config
-  #   container_name: ca_finance
+  ca2:
+    extends:
+      file: base.yaml
+      service: ca-base
+    environment:
+      - FABRIC_CA_SERVER_CA_NAME=ca-accounts
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.accounts.workspace-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+      - FABRIC_CA_SERVER_PORT=9054
+    ports:
+      - "9054:9054"
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.accounts.workspace-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/priv_sk -b admin:adminpw -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/accounts.workspace/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca_finance
 
-  # ca3:
-  #   extends:
-  #     file: base.yaml
-  #     service: ca-base
-  #   environment:
-  #     - FABRIC_CA_SERVER_CA_NAME=ca-hr
-  #     - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.hr.workspace-cert.pem
-  #     - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/973b6fbc8397b467ec76dc32ad61104ac77034a1e2de1b98dedbb787c0540def_sk
-  #     - FABRIC_CA_SERVER_PORT=11054
-  #   ports:
-  #     - "11054:11054"
-  #   command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.hr.workspace-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/973b6fbc8397b467ec76dc32ad61104ac77034a1e2de1b98dedbb787c0540def_sk -b admin:adminpw -d'
-  #   volumes:
-  #     - ./crypto-config/peerOrganizations/hr.workspace/ca/:/etc/hyperledger/fabric-ca-server-config
-  #   container_name: ca_hr
+  ca3:
+    extends:
+      file: base.yaml
+      service: ca-base
+    environment:
+      - FABRIC_CA_SERVER_CA_NAME=ca-hr
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.hr.workspace-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+      - FABRIC_CA_SERVER_PORT=11054
+    ports:
+      - "11054:11054"
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.hr.workspace-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/priv_sk -b admin:adminpw -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/hr.workspace/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca_hr
   
-  # ca4:
-  #   extends:
-  #     file: base.yaml
-  #     service: ca-base
-  #   environment:
-  #     - FABRIC_CA_SERVER_CA_NAME=ca-marketing
-  #     - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.marketing.workspace-cert.pem
-  #     - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/82b1b4f6bf80f8b948f8aac606ae7a46f8605b221e309b8cc3edea307020e56d_sk
-  #     - FABRIC_CA_SERVER_PORT=13054
-  #   ports:
-  #     - "13054:13054"
-  #   command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.marketing.workspace-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/82b1b4f6bf80f8b948f8aac606ae7a46f8605b221e309b8cc3edea307020e56d_sk -b admin:adminpw -d'
-  #   volumes:
-  #     - ./crypto-config/peerOrganizations/marketing.workspace/ca/:/etc/hyperledger/fabric-ca-server-config
-  #   container_name: ca_marketing
-  #   networks:
-  #     - byfn  
+  ca4:
+    extends:
+      file: base.yaml
+      service: ca-base
+    environment:
+      - FABRIC_CA_SERVER_CA_NAME=ca-marketing
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.marketing.workspace-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+      - FABRIC_CA_SERVER_PORT=13054
+    ports:
+      - "13054:13054"
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.marketing.workspace-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/priv_sk -b admin:adminpw -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/marketing.workspace/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca_marketing
+    networks:
+      - byfn  

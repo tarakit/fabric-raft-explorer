@@ -1,0 +1,67 @@
+{
+	"name": "first-network",
+	"version": "1.0.0",
+	"client": {
+		"tlsEnable": true,
+		"adminCredential": {
+			"id": "exploreradmin",
+			"password": "exploreradminpw"
+		},
+		"enableAuthentication": true,
+		"organization": "Org1MSP",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "300"
+				},
+				"orderer": "300"
+			}
+		}
+	},
+	"channels": {
+		"workspace": {
+			"peers": {
+				"peer1.developers.workspace": {},
+				"peer2.developers.workspace": {}
+			},
+			"connection": {
+				"timeout": {
+					"peer": {
+						"endorser": "6000",
+						"eventHub": "6000",
+						"eventReg": "6000"
+					}
+				}
+			}
+		}
+	},
+	"organizations": {
+		"Org1MSP": {
+			"mspid": "Org1MSP",
+			"adminPrivateKey": {
+				"path": "/tmp/crypto/peerOrganizations/developers.workspace/users/Admin@developers.workspace/msp/keystore/priv_sk"
+			},
+			"peers": [
+				"peer1.developers.workspace",
+				"peer2.developers.workspace"
+			],
+			"signedCert": {
+				"path": "/tmp/crypto/peerOrganizations/developers.workspace/users/Admin@developers.workspace/msp/signcerts/Admin@developers.workspace-cert.pem"
+			}
+		}
+	},
+	"peers": {
+		"peer1.developers.workspace": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/developers.workspace/peers/peer1.developers.workspace/tls/ca.crt"
+			},
+			"url": "grpcs://peer1.developers.workspace:7051"
+		}, 
+		"peer2.developers.workspace": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/developers.workspace/peers/peer2.developers.workspace/tls/ca.crt"
+			},
+			"url": "grpcs://peer2.developers.workspace:8051"
+		}
+	}
+}
