@@ -1,0 +1,63 @@
+
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+# - "first_rules.yml"
+# - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+  - job_name: "orderer1"
+    static_configs:
+      - targets: ["orderer1.workspace:7000"]
+  - job_name: "devpeer"
+    static_configs:
+      - targets: ["peer1.developers.workspace:7001"]
+  # - job_name: "orderer3"
+  #   static_configs:
+  #     - targets: ["orderer3.workspace:9050"]
+  # - job_name: "orderer4"
+  #   static_configs:
+  #     - targets: ["orderer4.workspace:10050"]
+  # - job_name: "orderer5"
+  #   static_configs:
+  #     - targets: ["orderer5.workspace:11050"]
+  # # Peer
+  # - job_name: "DeveloperPeer1"
+  #   static_configs:
+  #     - targets: ["peer1.developers.workspace:7051"]
+  # - job_name: "DeveloperPeer2"
+  #   static_configs:
+  #     - targets: ["peer2.developers.workspace:8051"]
+  # - job_name: "AccountPeer1"
+  #   static_configs:
+  #     - targets: ["peer1.accounts.workspace:9051"]
+  # - job_name: "AccountPeer2"
+  #   static_configs:
+  #     - targets: ["peer2.accounts.workspace:10051"]
+  # - job_name: "HrPeer1"
+  #   static_configs:
+  #     - targets: ["peer1.hr.workspace:11051"]
+  # - job_name: "HrPeer2"
+  #   static_configs:
+  #     - targets: ["peer2.hr.workspace:12051"]
+  # - job_name: "MarketingPeer1"
+  #   static_configs:
+  #     - targets: ["peer1.marketing.workspace:13051"]
+  # - job_name: "MarketingPeer2"
+  #   static_configs:
+  #     - targets: ["peer2.marketing.workspace:14051"]
