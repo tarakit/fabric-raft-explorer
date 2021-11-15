@@ -31,3 +31,11 @@ echo "For Developers organization: "
 peer channel join -b ./workspace.block
 echo "print the peer channel list to see joined channel in this peer"
 peer channel list
+
+
+peer channel update \
+	-o orderer1.workspace:7050 \
+	-c $CHANNEL_NAME \
+	-f ./channel-artifacts/Org1MSPanchors.tx \
+	--tls \
+	--cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/workspace/orderers/orderer1.workspace/msp/tlscacerts/tlsca.workspace-cert.pem

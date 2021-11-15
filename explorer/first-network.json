@@ -21,8 +21,7 @@
 	"channels": {
 		"workspace": {
 			"peers": {
-				"peer1.developers.workspace": {},
-				"peer2.developers.workspace": {}
+				"peer1.developers.workspace": {}
 			},
 			"connection": {
 				"timeout": {
@@ -42,24 +41,10 @@
 				"path": "/tmp/crypto/peerOrganizations/developers.workspace/users/Admin@developers.workspace/msp/keystore/priv_sk"
 			},
 			"peers": [
-				"peer1.developers.workspace",
-				"peer2.developers.workspace"
+				"peer1.developers.workspace"
 			],
 			"signedCert": {
 				"path": "/tmp/crypto/peerOrganizations/developers.workspace/users/Admin@developers.workspace/msp/signcerts/Admin@developers.workspace-cert.pem"
-			}
-		},
-		"Org2MSP": {
-			"mspid": "Org2MSP",
-			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/accounts.workspace/users/Admin@accounts.workspace/msp/keystore/priv_sk"
-			},
-			"peers": [
-				"peer1.accounts.workspace",
-				"peer2.accounts.workspace"
-			],
-			"signedCert": {
-				"path": "/tmp/crypto/peerOrganizations/accounts.workspace/users/Admin@accounts.workspace/msp/signcerts/Admin@accounts.workspace-cert.pem"
 			}
 		}
 	},
@@ -69,12 +54,6 @@
 				"path": "/tmp/crypto/peerOrganizations/developers.workspace/peers/peer1.developers.workspace/tls/ca.crt"
 			},
 			"url": "grpcs://peer1.developers.workspace:7051"
-		}, 
-		"peer2.developers.workspace": {
-			"tlsCACerts": {
-				"path": "/tmp/crypto/peerOrganizations/developers.workspace/peers/peer2.developers.workspace/tls/ca.crt"
-			},
-			"url": "grpcs://peer2.developers.workspace:8051"
 		}
 	}
 }

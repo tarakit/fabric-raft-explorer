@@ -1,7 +1,7 @@
 #!/bin/bash
-
-if [[ -d "./crypto-config" ]]
-then
+export PATH=$PATH:/home/kitta/fabric-samples/bin
+# if [[ -d "./crypto-config" ]]
+# then
 	echo "Step 1 :>>"
 	echo "===================== Generating Artifacts ========================"
 	cryptogen generate --config=./crypto-config.yaml
@@ -38,7 +38,7 @@ then
 
 	echo " <<<<<<<<<<<<< END CREATING ANCHOR PEER FOR EACH ORGANIZATIONs >>>>>>>>>>>>>>>" 
 
-fi
+# fi
 
 /////////////////////?/////////////////////?/////////////////////?/////////////////////?
 echo "Step 5 :>>"
