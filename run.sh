@@ -1,4 +1,8 @@
 #!/bin/bash
+
+export IMAGE_TAG=latest
+
+echo $IMAGE_TAG
 export PATH=$PATH:/home/kitta/fabric-samples/bin
 # if [[ -d "./crypto-config" ]]
 # then

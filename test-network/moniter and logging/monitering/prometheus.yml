@@ -23,10 +23,10 @@ scrape_configs:
       - targets: ["localhost:9090"]
   - job_name: "orderer1"
     static_configs:
-      - targets: ["localhost:9443"]
+      - targets: ["orderer1.workspace:9443"]
   - job_name: "devpeer"
     static_configs:
-      - targets: ["localhost:9444"]
+      - targets: ["peer1.developers.workspace:9444"]
   # - job_name: "orderer3"
   #   static_configs:
   #     - targets: ["orderer3.workspace:9050"]
